@@ -97,6 +97,19 @@ spec:
                   - name
                   type: object
                 type: array
+              storageSpec:
+                description: storageSpec is TODO
+                properties:
+                  mountPath:
+                    description: |-
+                      mountPath is the path where the data will be stored
+                      Default: "/var/lib/insights-data"
+                    type: string
+                  persistentVolumeClaimName:
+                    description: persistentVolumeClaimName is the PVC that is already
+                      existing in the cluster, specified by the user
+                    type: string
+                type: object
             type: object
           status:
             description: status holds observed values from the cluster. They may not

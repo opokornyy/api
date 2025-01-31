@@ -14729,6 +14729,11 @@
             "default": {},
             "$ref": "#/definitions/com.github.openshift.api.insights.v1alpha1.GathererConfig"
           }
+        },
+        "storageSpec": {
+          "description": "storageSpec is TODO",
+          "default": {},
+          "$ref": "#/definitions/com.github.openshift.api.insights.v1alpha1.StorageSpec"
         }
       }
     },
@@ -14929,6 +14934,19 @@
           "description": "resource is the type that is being referenced. It is normally the plural form of the resource kind in lowercase. This value should consist of only lowercase alphanumeric characters and hyphens. Example: \"deployments\", \"deploymentconfigs\", \"pods\", etc.",
           "type": "string",
           "default": ""
+        }
+      }
+    },
+    "com.github.openshift.api.insights.v1alpha1.StorageSpec": {
+      "type": "object",
+      "properties": {
+        "mountPath": {
+          "description": "mountPath is the path where the data will be stored Default: \"/var/lib/insights-data\"",
+          "type": "string"
+        },
+        "persistentVolumeClaimName": {
+          "description": "persistentVolumeClaimName is the PVC that is already existing in the cluster, specified by the user",
+          "type": "string"
         }
       }
     },

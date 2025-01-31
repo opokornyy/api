@@ -543,6 +543,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/openshift/api/insights/v1alpha1.HealthCheck":                                             schema_openshift_api_insights_v1alpha1_HealthCheck(ref),
 		"github.com/openshift/api/insights/v1alpha1.InsightsReport":                                          schema_openshift_api_insights_v1alpha1_InsightsReport(ref),
 		"github.com/openshift/api/insights/v1alpha1.ObjectReference":                                         schema_openshift_api_insights_v1alpha1_ObjectReference(ref),
+		"github.com/openshift/api/insights/v1alpha1.StorageSpec":                                             schema_openshift_api_insights_v1alpha1_StorageSpec(ref),
 		"github.com/openshift/api/kubecontrolplane/v1.AggregatorConfig":                                      schema_openshift_api_kubecontrolplane_v1_AggregatorConfig(ref),
 		"github.com/openshift/api/kubecontrolplane/v1.KubeAPIServerConfig":                                   schema_openshift_api_kubecontrolplane_v1_KubeAPIServerConfig(ref),
 		"github.com/openshift/api/kubecontrolplane/v1.KubeAPIServerImagePolicyConfig":                        schema_openshift_api_kubecontrolplane_v1_KubeAPIServerImagePolicyConfig(ref),
@@ -26355,11 +26356,18 @@ func schema_openshift_api_insights_v1alpha1_DataGatherSpec(ref common.ReferenceC
 							},
 						},
 					},
+					"storageSpec": {
+						SchemaProps: spec.SchemaProps{
+							Description: "storageSpec is TODO",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/openshift/api/insights/v1alpha1.StorageSpec"),
+						},
+					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/openshift/api/insights/v1alpha1.GathererConfig"},
+			"github.com/openshift/api/insights/v1alpha1.GathererConfig", "github.com/openshift/api/insights/v1alpha1.StorageSpec"},
 	}
 }
 
@@ -26688,6 +26696,32 @@ func schema_openshift_api_insights_v1alpha1_ObjectReference(ref common.Reference
 					},
 				},
 				Required: []string{"group", "resource", "name"},
+			},
+		},
+	}
+}
+
+func schema_openshift_api_insights_v1alpha1_StorageSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"persistentVolumeClaimName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "persistentVolumeClaimName is the PVC that is already existing in the cluster, specified by the user",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"mountPath": {
+						SchemaProps: spec.SchemaProps{
+							Description: "mountPath is the path where the data will be stored Default: \"/var/lib/insights-data\"",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
 			},
 		},
 	}

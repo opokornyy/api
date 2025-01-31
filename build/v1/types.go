@@ -117,7 +117,7 @@ type BuildTriggerCause struct {
 	GenericWebHook *GenericWebHookCause `json:"genericWebHook,omitempty" protobuf:"bytes,2,opt,name=genericWebHook"`
 
 	// githubWebHook represents data for a GitHub webhook that fired a
-	//specific build.
+	// specific build.
 	GitHubWebHook *GitHubWebHookCause `json:"githubWebHook,omitempty" protobuf:"bytes,3,opt,name=githubWebHook"`
 
 	// imageChangeBuild stores information about an imagechange event
@@ -322,7 +322,7 @@ const (
 	// StepPushDockerImage pushes a container image to the registry.
 	StepPushDockerImage StepName = "PushDockerImage"
 
-	//StepDockerBuild performs the container image build
+	// StepDockerBuild performs the container image build
 	StepDockerBuild StepName = "DockerBuild"
 )
 
@@ -400,7 +400,7 @@ type BuildSourceType string
 
 // Valid values for BuildSourceType.
 const (
-	//BuildSourceGit instructs a build to use a Git source control repository as the build input.
+	// BuildSourceGit instructs a build to use a Git source control repository as the build input.
 	BuildSourceGit BuildSourceType = "Git"
 	// BuildSourceDockerfile uses a Dockerfile as the start of a build
 	BuildSourceDockerfile BuildSourceType = "Dockerfile"
@@ -957,10 +957,9 @@ type BuildConfig struct {
 
 // BuildConfigSpec describes when and how builds are created
 type BuildConfigSpec struct {
-
-	//triggers determine how new Builds can be launched from a BuildConfig. If
-	//no triggers are defined, a new build can only occur as a result of an
-	//explicit client build creation.
+	// triggers determine how new Builds can be launched from a BuildConfig. If
+	// no triggers are defined, a new build can only occur as a result of an
+	// explicit client build creation.
 	// +optional
 	Triggers []BuildTriggerPolicy `json:"triggers,omitempty" protobuf:"bytes,1,rep,name=triggers"`
 
@@ -1420,6 +1419,7 @@ type BuildVolume struct {
 	Mounts []BuildVolumeMount `json:"mounts" patchStrategy:"merge" patchMergeKey:"destinationPath" protobuf:"bytes,3,opt,name=mounts"`
 }
 
+// TODO: maybe something like this could be used??
 // BuildVolumeSourceType represents a build volume source type
 type BuildVolumeSourceType string
 
@@ -1437,7 +1437,6 @@ const (
 // BuildVolumeSource represents the source of a volume to mount
 // Only one of its supported types may be specified at any given time.
 type BuildVolumeSource struct {
-
 	// type is the BuildVolumeSourceType for the volume source.
 	// Type must match the populated volume source.
 	// Valid types are: Secret, ConfigMap

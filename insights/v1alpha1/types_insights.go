@@ -52,6 +52,21 @@ type DataGatherSpec struct {
 	// "oc get insightsoperators.operator.openshift.io cluster -o json | jq '.status.gatherStatus.gatherers[].name'"
 	// +optional
 	Gatherers []GathererConfig `json:"gatherers"`
+
+	// storageSpec is TODO
+	// +optional
+	StorageSpec StorageSpec `json:"storageSpec,omitempty"`
+}
+
+type StorageSpec struct {
+	// persistentVolumeClaimName is the PVC that is already existing in the cluster, specified by the user
+	// +optional
+	PersistentVolumeClaimName string `json:"persistentVolumeClaimName,omitempty"`
+
+	// mountPath is the path where the data will be stored
+	// Default: "/var/lib/insights-data"
+	// +optional
+	MountPath string `json:"mountPath,omitempty"`
 }
 
 const (
